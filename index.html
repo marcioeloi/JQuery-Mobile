@@ -1,0 +1,1342 @@
+<!doctype html>
+<html>
+<head>
+    <title>GlicoMobile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Arquivos CSS -->
+    <link rel="stylesheet" href="jquery-ui-1.11.4.custom/jquery-ui.css" /><!-- JQUERY UI -->
+    <link rel="stylesheet" href="jquery.mobile-1.3.2/jquery.mobile-1.3.2.css" /><!-- JQUERY MOBILE -->
+    <!-- -->
+    <!-- Arquivos JQUERY -->
+    <script src="jquery.mobile-1.3.2/jquery-1.11.3.min.js"></script><!-- JQUERY -->
+    <script type="text/javascript" src="jquery-ui-1.11.4.custom/jquery-ui.js"></script><!-- JQUERY UI -->
+    <script src="jquery.mobile-1.3.2/jquery.mobile-1.3.2.js"></script><!-- JQUERY MOBILE -->
+    <script src="jquery.mobile-1.3.2/jquery.csv-0.71.js"></script> <!-- manipular arquivos csv -->
+    <!-- -->
+    <!-- Operações no banco de dados -->
+    <script src="js/calculo_op.js"></script>
+    <script src="js/database_op.js"></script>
+    <script src="js/database_dados.js"></script>
+    <script src="js/database_eventos.js"></script>
+    <script src="js/csv_import.js"></script>
+    <!-- -->
+</head>
+<body>
+    <!-- ---------------------------------------------------INDEX------------------------------------------------------------------- -->
+    <div data-role="page" id="index">
+ 
+        <div data-role="header">
+            <h1><input type="button" data-icon="home" data-iconpos="notext" value="Icon only" data-inline="true">Bem Vindo!</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+	<a href="#adicionar_eventos" data-role="button" data-icon="plus" data-theme="a">Adicionar Evento</a>
+        <p>
+        <a href="#alterar_dados" data-role="button" data-icon="edit" data-theme="a">Alterar Dados</a>
+        <p>
+        <a href="#configuracoes" data-role="button" data-icon="gear" data-theme="a">Configurações</a>
+	
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4> </h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- ----------------------------------------------------/page------------------------------------------------------------------ -->
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------------PAGINAS DE NAVEGAÇÃO---------------------------------------------------------- -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!-- ----------------------------------------------------ALTERAR DADOS---------------------------------------------------------- -->
+    <div data-role="page" id="alterar_dados">
+ 
+        <div data-role="header">
+            <h1>Alterar Dados</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+	<a href="#" data-role="button" data-icon="calendar" data-theme="a">Dados de Eventos</a>
+        <p>
+        <a href="#dados_usuario" data-role="button" data-icon="user" data-theme="a">Seus Dados</a>
+        <p>
+        <a href="#" data-role="button" data-icon="heart" data-theme="a">Recomendações</a>
+	
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#index" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------ALTERAR DADOS---------------------------------------------------------- -->
+    <div data-role="page" id="alterar_dados">
+ 
+        <div data-role="header">
+            <h1>Alterar Dados</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+	<a href="#dados_eventos" data-role="button" data-icon="grid" data-theme="a">Dados de Eventos</a>
+        <p>
+        <a href="#dados_usuario" data-role="button" data-icon="info" data-theme="a">Seus Dados</a>
+        <p>
+        <a href="#recomendacoes" data-role="button" data-icon="bars" data-theme="a">Recomendações</a>
+	
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#index" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+
+    <!-- ----------------------------------------------------RECOMENDAÇÕES---------------------------------------------------------- -->
+    <div data-role="page" id="recomendacoes">
+ 
+        <div data-role="header">
+            <h1>Recomendações</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+	<a href="#dist_calorica" data-role="button" data-icon="bars" data-theme="a">Calórias por Refeição</a>
+        <p>
+        <a href="#quant_macro" data-role="button" data-icon="bars" data-theme="a">Macronutrientes</a>
+        <p>
+        <a href="#receitas_medicas" data-role="button" data-icon="bars" data-theme="a" onclick="showRecords_receitas()">Receitas Medicas</a>
+	
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#alterar_dados" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ---------------------------------------------PAGINAS DE CONFIGURAÇÕES------------------------------------------------------ -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!-- ---------------------------------------------------CONFIGURAÇÕES----------------------------------------------------------- -->
+    <div data-role="page" id="configuracoes">
+ 
+        <div data-role="header">
+            <h1>Configurações</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+	<a href="#" data-role="button" data-icon="alert" data-theme="a" onclick="dropAllTable()">Resetar Aplicativo</a>
+	
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#index" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------PAGINAS DE DADOS------------------------------------------------------- -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+        <!-- ----------------------------------------------------DADOS USUÁRIO------------------------------------------------------ -->
+    <div data-role="page" id="dados_usuario">
+ 
+        <div data-role="header">
+            <h1>Seus Dados</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+            
+            <script src="js/calculo_op.js"></script>
+            
+            <form name="form_dados_usuario" id="form_dados_usuario">
+            
+                <label for="peso">Massa (Kilos):</label>
+                <input type="range" name="peso" id="peso" value="70" min="40" max="150" data-highlight="true" step="0.1" data-mini="true" onchange="HarrisBenedict()">
+                
+                <label for="altura">Altura (metros):</label>
+                <input type="range" name="altura" id="altura" value="1.7" min="1.4" max="2.2" data-highlight="true" step="0.01" data-mini="true" onchange="HarrisBenedict()">
+                <p>
+                <fieldset data-role="controlgroup" data-type="horizontal" id="sexo_field" data-mini="true">
+                    <legend>Sexo:</legend>
+                    <input type="radio" name="sexo" id="sexo_m" value="masculino" checked="checked" onclick="HarrisBenedict()">
+                    <label for="sexo_m">Masculino</label>
+                    <input type="radio" name="sexo" id="sexo_f" value="feminino" onclick="HarrisBenedict()">
+                    <label for="sexo_f">Feminino</label>
+                </fieldset>  
+                
+                <fieldset data-role="controlgroup" data-type="horizontal" id="rotina_field" data-mini="true">
+                    <legend>Rotina Física:</legend>
+                    <input type="radio" name="rotina" id="rotina_sedentario" value="sedentario" checked="checked" onclick="HarrisBenedict()">
+                    <label for="rotina_sedentario">Sedentário</label>
+                    <input type="radio" name="rotina" id="rotina_medio" value="medio" onclick="HarrisBenedict()">
+                    <label for="rotina_medio">Médio</label>
+                    <input type="radio" name="rotina" id="rotina_ativo" value="ativo" onclick="HarrisBenedict()">
+                    <label for="rotina_ativo">Ativo</label>
+                </fieldset>  
+                <p>
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <label for="idade">Idade (Anos)</label>
+                        <input type="number" name="idade" id="idade" value="" placeholder="0" data-mini="true" onchange="HarrisBenedict()" />
+                    </div>
+                    <div class="ui-block-b">
+                        <label for="necessidade_calorica">Calorias/Dia:</label>
+                        <input type="number" name="necessidade_calorica" id="necessidade_calorica" value="" data-mini="true" />
+                    </div>
+                </fieldset>
+                <p>
+                <a href="#alterar_dados" data-role="button" id="salvar_usuario" data-icon="check" data-theme="a" onclick="insertRecord_alterar_dados()">Salvar</a>
+	
+            </form>
+        
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#alterar_dados" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- ---------------------------------------------RECOMENDAÇÕES_DIST_CALORICA--------------------------------------------------- -->
+    <div data-role="page" id="dist_calorica">
+ 
+        <div data-role="header">
+            <h1>Distribuição Calórica</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_dist_calorica" id="form_dist_calorica">
+            
+                <!-- Time Picker Desjejum-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_desjejum">Desjejum:</label>
+                    </div>
+                    <div class="ui-block-b"> <!-- style="width:35%" -->
+                        <input type="time" name="hora_desjejum" id="hora_desjejum" value="06:00" data-mini="true">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_desjejum" id="porcentagem_desjejum" value="30"  data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+
+                <!-- Time Picker Colação-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_colacao">Colação:</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="time" name= "hora_colacao" id="hora_colacao" value="09:00" data-mini="true">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_colacao" id="porcentagem_colacao" value="15" data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+                <!-- -->
+
+                <!-- Time Picker Almoço-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_almoco">Almoço:</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="time" name="hora_almoco" id="hora_almoco" value="12:00" data-mini="true">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_almoco" id="porcentagem_almoco" value="20" data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+                <!-- -->
+
+                <!-- Time Picker Lanche da Tarde-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_lanche">Lanche da tarde:</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="time" name="hora_lanche" id="hora_lanche" class="form-control" value="15:00" data-mini="true" readonly="readonly">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_lanche" id="porcentagem_lanche" value="15" data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+                <!-- -->
+
+                <!-- Time Picker Jantar-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_jantar">Jantar:</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="time" name="hora_jantar" id="hora_jantar" value="18:00" data-mini="true">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_jantar" id="porcentagem_jantar" value="10" data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+                <!-- -->
+
+                <!-- Time Picker Ceia-->
+                <fieldset class="ui-grid-c">
+                    <div class="ui-block-a">
+                        <label for="hora_ceia">Ceia:</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="time" name="hora_ceia" id="hora_ceia" value="21:00" data-mini="true">
+                    </div>
+                    <div class="ui-block-c">
+                        <input type="number" name="porcentagem_ceia" id="porcentagem_ceia" value="10" data-mini="true">
+                    </div>
+                    <div class="ui-block-d">
+                        <spam>%</spam>
+                    </div>
+                </fieldset>
+                <!-- -->
+                
+                <a href="#recomendacoes" data-role="button" id="salvar_porcentagens" data-icon="check" data-iconpos="right" data-theme="a" id="continuar" onclick="insertRecord_dist_calorica()" >Salvar</a>
+        
+            </form>
+        
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#recomendacoes" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------RECOMENDAÇÕES_QUANTIDADES_MACRO------------------------------------------------ -->
+    <div data-role="page" id="quant_macro">
+ 
+        <div data-role="header">
+            <h1>Macronutrientes Recomendados</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_quant_macro" id="form_quant_macro">
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <label for="">Proteínas (%)</label>
+                        <input type="number" name="p_proteina" id="p_proteina" value="" data-mini="true">
+                    </div>
+                    
+                    <div class="ui-block-b">
+                        <label for="">Carboidratos (%)</label>
+                        <input type="number" name="p_carbo" id="p_carbo" value="" data-mini="true">
+                    </div>
+                    
+                </fieldset>
+                <p>
+                <spam>Ácidos Graxos:</spam>
+                <p>
+                
+                <div class="ui-field-contain">
+                    <label for="">Saturados (%)</label>
+                    <input type="number" name="p_saturados" id="p_saturados" value="" data-mini="true">
+                </div>
+                <fieldset class="ui-grid-a">    
+                    <div class="ui-block-a">
+                        <label for="p_monoinsaturados">Monoinsaturados (%)</label>
+                        <input type="number" name="p_monoinsaturados" id="p_monoinsaturados" value="" data-mini="true">
+                    </div>
+                    
+                    <div class="ui-block-b">
+                        <label for="p_poliinsaturados">Poliinsaturados (%)</label>
+                        <input type="number" name="p_poliinsaturados" id="p_poliinsaturados" value="" data-mini="true">
+                    </div> 
+                </fieldset>
+                <p>
+                <a href="#recomendacoes" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a" id="salvar" onclick="insertRecord_macronutrientes()" >Salvar</a>
+        
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#recomendacoes" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- -------------------------------------------------RECEITAS MEDICAS---------------------------------------------------------- -->
+    <div data-role="page" id="receitas_medicas">
+ 
+        <div data-role="header">
+            <h1>Receitas Médicas</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_medicamento" id="form_receitas_medicas">
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input type="text" name="nome_medicamento_receita" id="nome_medicamento_receita" value="" placeholder="Medicamento" />
+                    </div>
+                    <div class="ui-block-b">
+                        <input type="number" name="quantidade_medicamento_receita" id="quantidade_medicamento_receita" value="" placeholder="Quantidade" />
+                    </div>
+                    <div class="ui-block-a">    
+                        <!-- Menu  -->
+                        <label for="escolha_unidade_receita" class="select"></label>
+                        <select name="escolha_unidade_receita" id="escolha_unidade_receita" data-native-menu="false">
+                            <option>Unidade:</option>
+                            <option value="unidades de insulina">Unidades de Insulina</option>
+                            <option value="comprimidos">Comprimidos</option>
+                            <option value="ml">ml</option>
+                            <option value="gotas">Gotas</option>
+                        </select>
+                        <!-- -->
+                    </div>
+                    <div class="ui-block-b">
+                        <label for="salvar_receita"></label>
+                        <a href="#" data-role="button" type="submit" id="salvar_receita" data-icon="check" data-theme="a" onclick="insertRecords_receitas()">Salvar</a>
+                    </div>
+                    <input type="hidden" id="hidden_receita" value=""/>
+                </fieldset> 
+                    
+                <div id="lista_de_receitas">
+                    <ul data-role="listview" data-inset="true" id="lista_de_receitas_ul">
+
+                    </ul>
+                </div>
+                   
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#recomendacoes" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a" onclick="resetReceita()">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------PAGINAS DE EVENTOS----------------------------------------------------- -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!-- -------------------------------------------------ADICIONAR EVENTOS--------------------------------------------------------- -->
+    <div data-role="page" id="adicionar_eventos">
+ 
+        <div data-role="header">
+            <h1>Adicionar Eventos</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_adicionar_eventos" id="form_adicionar_eventos">
+
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                
+                        <!-- Date Picker -->
+                        <label for="date">Data:</label>
+                        <input type="date" name="data_evento" id="data_evento" value="">
+                        <!-- -->
+                    </div>
+                    <div class="ui-block-b">
+                        <label for="time">Hora:</label>
+                        <input type="time" name="hora_evento" id="hora_evento" value="">
+                    </div>
+                </fieldset>   
+                <!-- Menu  -->
+                <!-- Seleciona o tipo de evento -->
+                <label for="tipo_evento" class="select">Selecione um evento:</label>
+                <select name="tipo_evento" id="tipo_evento" data-native-menu="false" onchange="ChangeButtonValue()">
+                    <option>Selecione o tipo de evento:</option>
+                    <option value="refeicao">Refeição</option>
+                    <option value="medicao_glicemia">Medição de Glicemia</option>
+                    <option value="medicamento">Uso de Medicamento</option>
+                    <option value="atividade">Atividade Física</option>
+                </select>
+                <!-- -->
+                <p>
+                <a href="#" data-role="button" data-icon="arrow-r" data-iconpos="right" data-theme="a" name="continuar_evento" id="continuar_evento" onclick="VerificarPreenchimento()">Continuar</a>
+
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#index" name="voltar_evento" id="voltar_evento" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a" onclick="resetarEventos('atividade', 'Atividade_Fisica')">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------ATIVIDADE FÍSICA--------------------------------------------------------- -->
+    <div data-role="page" id="atividade">
+ 
+        <div data-role="header">
+            <h1>Atividade Física</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_atividade" id="form_atividade">
+
+                <label for="nome_atividade">Atividade:</label>
+                <input type="text" name="nome_atividade" id="nome_atividade" value="">
+                <p>
+                <label for="duracao">Duração (Minutos):</label>
+                <input type="range" name="duracao" id="duracao" value="30" min="0" max="180" data-highlight="true">
+                <p>
+                <fieldset data-role="controlgroup" data-type="horizontal" id="radio_intensidade">
+                    <legend>Intensidade:</legend>
+                    <input type="radio" name="intensidade" id="intensidade_alta" value="alta" checked="checked">
+                    <label for="intensidade_alta">Alta</label>
+                    <input type="radio" name="intensidade" id="intensidade_media" value="media">
+                    <label for="intensidade_media">Media</label>
+                    <input type="radio" name="intensidade" id="intensidade_baixa" value="baixa">
+                    <label for="intensidade_baixa">Baixa</label>
+                </fieldset>  
+                <p>
+                <a href="#index" data-role="button" data-icon="check" data-theme="a" name="salvar_Atividade_Fisica" id="salvar_Atividade_Fisica" onclick="insertRecord_atividade()">Salvar</a>
+
+            </form>
+        
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#adicionar_eventos" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- ----------------------------------------------------GLICEMIA--------------------------------------------------------------- -->
+    <div data-role="page" id="medicao_glicemia">
+ 
+        <div data-role="header">
+            <h1>Glicemia</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_medicao_glicemia" id="form_medicao_glicemia">
+            
+                <label for="valor">Valor (mg/dl):</label>
+                <input type="range" name="valor_medicao" id="valor_medicao" value="100.0" min="50.0" max="250.0" data-highlight="true" step="0.1">
+                <p>
+                <fieldset data-role="controlgroup" data-type="horizontal" id="radio_jejum">
+                    <legend>Jejum:</legend>
+                    <input type="radio" name="jejum" id="jejum_sim" value="sim" checked="checked">
+                    <label for="jejum_sim">Sim</label>
+                    <input type="radio" name="jejum" id="jejum_nao" value="nao">
+                    <label for="jejum_nao">Não</label>
+                </fieldset>  
+                <p>
+                <a href="#index" data-role="button" name="salvar_Medicao_Glicemia" id="salvar_Medicao_Glicemia" data-icon="check" data-theme="a" onclick="insertRecord_medicao_glicemia()">Salvar</a>
+	
+            </form>
+        
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#adicionar_eventos" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- ----------------------------------------------------MEDICAMENTO------------------------------------------------------------ -->
+    <div data-role="page" id="medicamento">
+ 
+        <div data-role="header">
+            <h1>Medicamento</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_medicamento" id="form_medicamento">
+
+                <label for="nome_medicamento">Medicamento:</label>
+                <input type="text" name="nome_medicamento" id="nome_medicamento" value="">
+                <p>
+                <label for="quantidade_medicamento">Quantidade:</label>
+                <input type="number" name="quantidade_medicamento" id="quantidade_medicamento" value="">
+                <p>
+                <!-- Menu  -->
+                <label for="escolha_unidade" class="select">Unidade:</label>
+                <select name="escolha_unidade" id="escolha_unidade" data-native-menu="false">
+                    <option>Selecione a unidade:</option>
+                    <option value="unidades_de_insulina">Unidades de Insulina</option>
+                    <option value="comprimidos">Comprimidos</option>
+                    <option value="ml">ml</option>
+                    <option value="gotas">Gotas</option>
+                </select>
+                <!-- -->
+                <p>
+                <a href="#index" data-role="button" type="submit" name="salvar_Uso_Medicamento" id="salvar_Uso_Medicamento" data-icon="check" data-theme="a" onclick="insertRecord_medicamento()">Salvar</a>
+                
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#adicionar_eventos" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------DADOS DE EVENTOS--------------------------------------------------------- -->
+    <div data-role="page" id="dados_eventos">
+ 
+        <div data-role="header">
+            <h1>Dados de Eventos</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+            
+            <form name="form_dados_eventos" id="form_dados_eventos">
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <!-- Seleciona o tipo de evento -->
+                        <label for="tipo_evento_passado" class="select">Selecione um evento:</label>
+                        <select name="tipo_evento_passado" id="tipo_evento_passado" data-native-menu="false" onchange="showRecords_eventos()">
+                            <option>Selecione o tipo de evento:</option>
+                            <option value="Refeicao">Refeição</option>
+                            <option value="Medicao_Glicemia">Medição de Glicemia</option>
+                            <option value="Uso_Medicamento">Uso de Medicamento</option>
+                            <option value="Atividade_Fisica">Atividade Física</option>
+                        </select>
+                        <!-- -->
+                    </div>
+                    <div class="ui-block-b">
+                        <!-- Date Picker -->
+                        <label for="">Data:</label>
+                        <input type="date" name="data_evento_passado" id="data_evento_passado" value="" onchange="showRecords_eventos()">
+                        <!-- -->
+                    </div>
+                </fieldset>
+                
+                <div id="lista_de_eventos">
+                    <ul data-role="listview" data-inset="true" id="lista_de_eventos_ul">
+                        
+                    </ul>   
+                </div>
+            
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#alterar_dados" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a" onclick="resetForm('form_dados_eventos')">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------PAGINAS DE ALIMENTOS--------------------------------------------------- -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!-- -----------------------------------------------------REFEIÇÃO-------------------------------------------------------------- -->
+    <div data-role="page" id="refeicao">
+ 
+        <div data-role="header">
+            <h1>Refeição</h1>
+        </div><!-- /header -->
+ 
+        <div data-role="content">
+        
+            <form name="form_refeicao" id="form_refeicao" data-ajax="false">
+                
+                <div>
+                    <input type="text" name="nome_alimento_refeicao" id="nome_alimento_refeicao" data-mini="true" placeholder="Alimento" onclick="autopreenchimento_alimento()"/>
+                </div>
+                
+                <fieldset class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <input type="number" name="quantidade_alimento_refeicao" id="quantidade_alimento_refeicao" data-mini="true" value="" placeholder="Quantidade" />
+                    </div>
+                    <div class="ui-block-b">    
+                        <!-- Menu  -->
+                        <label for="escolha_unidade_refeicao" class="select"></label>
+                        <select name="escolha_unidade_refeicao" id="escolha_unidade_refeicao" data-native-menu="false" data-mini="true">
+                            <option>Unidade:</option>
+                            <option value="gramas">Gramas</option>
+                            <option value="colher_sopa">Colher de Sopa</option>
+                            <option value="porcao_pequena">Porção Pequena</option>
+                            <option value="porcao_media">Porção Media</option>
+                            <option value="porcao_grande">Porção Grande</option>
+                        </select>
+                        <!-- -->
+                    </div>
+                </fieldset>
+                
+                <div>
+                    <label for="adicionar_refeicao"></label>
+                    <a href="#" data-role="button" type="submit" id="adicionar_refeicao" data-icon="check" data-theme="a" data-mini="true" onclick="adicionarAlimento()">Adicionar</a>
+                </div>
+                <input type="hidden" id="hidden_refeicao" value=""/>
+                
+                    
+                <div id="lista_refeicao">
+                    <ul data-role="listview" data-inset="true" id="lista_refeicao_ul">
+
+                    </ul>
+                </div>
+                
+            </form>
+            
+        </div><!-- /content -->
+ 
+        <div data-role="footer">
+            <h4><a href="#adicionar_eventos" data-role="button" data-inline="true" data-icon="arrow-l" data-theme="a">Voltar</a></h4>
+        </div><!-- /footer -->
+ 
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+    
+    
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    <!-- ----------------------------------------------------TABELA TACO------------------------------------------------------------ -->
+    <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+    
+    <!-- -----------------------------------------------DADOS DA TABELA TACO-------------------------------------------------------- -->
+    <div data-role="page" id="alimentos">
+        <a href="#" data-role="button" data-theme="a" onclick="insertTable()">Teste</a>
+        <textarea name="tabela_taco" id="tabela_taco">
+"Arroz, integral, cozido","123.53","516.87","2.59","25.81","1","0","2.75"
+"Arroz, integral, cru","359.68","1504.89","7.32","77.45","1.86","0","4.82"
+"Arroz, tipo 1, cozido","128.26","536.63","2.52","28.06","0.23","0","1.56"
+"Arroz, tipo 1, cru","357.79","1496.99","7.16","78.76","0.34","0","1.64"
+"Arroz, tipo 2, cozido","130.12","544.42","2.57","28.19","0.36","0","1.07"
+"Arroz, tipo 2, cru","358.12","1498.36","7.24","78.88","0.28","0","1.72"
+"Aveia, flocos, crua","393.82","1647.75","13.92","66.64","8.5","0","9.13"
+"Biscoito, doce, maisena","442.82","1852.76","8.07","75.23","11.97","0","2.1"
+"Biscoito, doce, recheado com chocolate","471.82","1974.11","6.4","70.55","19.58","0","2.96"
+"Biscoito, doce, recheado com morango","471.17","1971.4","5.72","71.01","19.57","0","1.53"
+"Biscoito, doce, wafer, recheado de chocolate","502.46","2102.28","5.56","67.54","24.67","0","1.8"
+"Biscoito, doce, wafer, recheado de morango","513.45","2148.26","4.52","67.35","26.4","1.27","0.82"
+"Biscoito, salgado, cream cracker","431.73","1806.37","10.06","68.73","14.44","0","2.51"
+"Bolo, mistura para","418.63","1751.56","6.16","84.71","6.13","0","1.7"
+"Bolo, pronto, aipim","323.85","1355","4.42","47.86","12.75","73.2","0.69"
+"Bolo, pronto, chocolate","410.01","1715.5","6.22","54.72","18.47","76.8","1.43"
+"Bolo, pronto, coco","333.44","1395.1","5.67","52.28","11.3","63.21","1.06"
+"Bolo, pronto, milho","311.39","1302.84","4.8","45.11","12.42","81.69","0.71"
+"Canjica, branca, crua","357.6","1496.21","7.2","78.06","0.97","0","5.5"
+"Canjica, com leite integral","112.46","470.52","2.36","23.63","1.24","1.35","1.22"
+"Cereais, milho, flocos, com sal","369.6","1546.41","7.29","80.84","1.6","0","5.29"
+"Cereais, milho, flocos, sem sal","363.34","1520.21","6.88","80.45","1.18","0","1.84"
+"Cereais, mingau, milho, infantil","394.43","1650.28","6.43","87.27","1.09","0","3.21"
+"Cereais, mistura para vitamina, trigo, cevada e aveia","381.13","1594.66","8.9","81.62","2.12","0","4.98"
+"Cereal matinal, milho","365.35","1528.64","7.16","83.82","0.96","0","4.12"
+"Cereal matinal, milho, açúcar","376.56","1575.51","4.74","88.84","0.67","0","2.11"
+"Creme de arroz, pó","386","1615.03","7.03","83.87","1.23","0","1.07"
+"Creme de milho, pó","333.03","1393.42","4.82","86.15","1.64","0","3.72"
+"Curau, milho verde","78.43","328.17","2.36","13.94","1.64","4.74","0.46"
+"Curau, milho verde, mistura para","402.29","1683.17","2.22","79.82","13.37","0","2.52"
+"Farinha, de arroz, enriquecida","363.06","1519.03","1.27","85.5","0.3","0","0.58"
+"Farinha, de centeio, integral","335.78","1404.89","12.52","73.3","1.75","0","15.48"
+"Farinha, de milho, amarela","350.59","1466.86","7.19","79.08","1.47","0","5.49"
+"Farinha, de rosca","370.58","1550.5","11.38","75.79","1.46","0","4.82"
+"Farinha, de trigo","360.47","1508.22","9.79","75.09","1.37","0","2.35"
+"Farinha, láctea, de cereais","414.85","1735.73","11.88","77.77","5.79","11.27","1.94"
+"Lasanha, massa fresca, cozida","163.76","685.19","5.81","32.52","1.16","0","1.64"
+"Lasanha, massa fresca, crua","220.31","921.76","7.01","45.06","1.34","0","1.61"
+"Macarrão, instantâneo","435.86","1823.66","8.79","62.43","17.24","0","5.61"
+"Macarrão, trigo, cru","371.12","1552.78","10","77.94","1.3","0","2.93"
+"Macarrão, trigo, cru, com ovos","370.57","1550.45","10.32","76.62","1.97","17.57","2.3"
+"Milho, amido, cru","361.37","1511.96","0.6","87.15","0","0","0.74"
+"Milho, fubá, cru","353.48","1478.97","7.21","78.87","1.9","0","4.71"
+"Milho, verde, cru","138.17","578.09","6.59","28.56","0.61","0","3.92"
+"Milho, verde, enlatado, drenado","97.56","408.21","3.23","17.14","2.35","0","4.64"
+"Mingau tradicional, pó","373.42","1562.4","0.58","89.34","0.37","0","0.88"
+"Pamonha, barra para cozimento, pré-cozida","171.22","716.38","2.55","30.68","4.85","0","2.37"
+"Pão, aveia, forma","343.09","1435.47","12.35","59.57","5.69","0","5.98"
+"Pão, de soja","308.73","1291.71","11.34","56.51","3.58","0","5.71"
+"Pão, glúten, forma","252.99","1058.53","11.95","44.12","2.73","0","2.48"
+"Pão, milho, forma","292.01","1221.78","8.3","56.4","3.11","5.69","4.3"
+"Pão, trigo, forma, integral","253.19","1059.36","9.43","49.94","3.65","0","6.88"
+"Pão, trigo, francês","299.81","1254.41","7.95","58.65","3.1","0","2.31"
+"Pão, trigo, sovado","310.96","1301.08","8.4","61.45","2.84","16.56","2.43"
+"Pastel, de carne, cru","288.7","1207.93","10.74","42.02","8.79","18.2","1.04"
+"Pastel, de carne, frito","388.37","1624.96","10.1","43.77","20.14","25.34","0.99"
+"Pastel, de queijo, cru","308.47","1290.66","9.85","45.95","9.63","14.35","1.11"
+"Pastel, de queijo, frito","422.11","1766.12","8.71","48.13","22.67","15.38","0.94"
+"Pastel, massa, crua","310.2","1297.89","6.9","57.38","5.48","0","1.41"
+"Pastel, massa, frita","569.67","2383.51","6.02","49.34","40.86","0","1.31"
+"Pipoca, com óleo de soja, sem sal","448.33","1875.83","9.93","70.31","15.94","0","14.34"
+"Polenta, pré-cozida","102.74","429.87","2.29","23.31","0.3","0","2.4"
+"Torrada, pão francês","377.42","1579.13","10.52","74.56","3.3","0","3.4"
+"Abóbora, cabotian, cozida","48.04","201.02","1.44","10.76","0.73","0","2.46"
+"Abóbora, cabotian, crua","38.6","161.5","1.75","8.36","0.54","0","2.17"
+"Abóbora, menina brasileira, crua","13.61","56.93","0.61","3.3","0","0","1.17"
+"Abóbora, moranga, crua","12.36","51.73","0.96","2.67","0.06","0","1.7"
+"Abóbora, moranga, refogada","29","121.35","0.39","5.98","0.8","0","1.55"
+"Abóbora, pescoço, crua","24.47","102.37","0.67","6.12","0.12","0","2.3"
+"Abobrinha, italiana, cozida","15.04","62.92","1.13","2.98","0.2","0","1.59"
+"Abobrinha, italiana, crua","19.28","80.66","1.14","4.29","0.14","0","1.35"
+"Abobrinha, italiana, refogada","24.43","102.21","1.07","4.19","0.82","0","1.38"
+"Abobrinha, paulista, crua","30.81","128.91","0.64","7.87","0.14","0","2.61"
+"Acelga, crua","20.94","87.62","1.44","4.63","0.11","0","1.12"
+"Agrião, cru","16.58","69.37","2.69","2.25","0.24","0","2.14"
+"Aipo, cru","19.09","79.88","0.76","4.27","0.07","0","0.96"
+"Alface, americana, crua","8.79","36.8","0.61","1.75","0.13","0","1.02"
+"Alface, crespa, crua","10.68","44.69","1.35","1.7","0.16","0","1.83"
+"Alface, lisa, crua","13.82","57.83","1.69","2.43","0.12","0","2.33"
+"Alface, roxa, crua","12.72","53.21","0.91","2.49","0.19","0","2.01"
+"Alfavaca, crua","29.18","122.1","2.66","5.24","0.48","0","4.14"
+"Alho, cru","113.13","473.34","7.01","23.91","0.22","0","4.32"
+"Alho-poró, cru","31.51","131.83","1.41","6.88","0.14","0","2.51"
+"Almeirão, cru","18.03","75.46","1.77","3.34","0.22","0","2.59"
+"Almeirão, refogado","65.08","272.3","1.7","5.7","4.85","0","3.43"
+"Batata, baroa, cozida","80.12","335.22","0.85","18.95","0.17","0","1.76"
+"Batata, baroa, crua","100.98","422.52","1.05","23.98","0.17","0","2.06"
+"Batata, doce, cozida","76.76","321.16","0.64","18.42","0.09","0","2.21"
+"Batata, doce, crua","118.24","494.72","1.26","28.2","0.13","0","2.57"
+"Batata, frita, tipo chips, industrializada","542.73","2270.8","5.58","51.22","36.62","0","2.46"
+"Batata, inglesa, cozida","51.59","215.85","1.16","11.94","0","0","1.34"
+"Batata, inglesa, crua","64.37","269.33","1.77","14.69","0","0","1.16"
+"Batata, inglesa, frita","267.16","1117.79","4.97","35.64","13.11","0","8.06"
+"Batata, inglesa, sauté","67.89","284.04","1.29","14.09","0.9","0","1.38"
+"Berinjela, cozida","18.85","78.85","0.68","4.47","0.15","0","2.52"
+"Berinjela, crua","19.63","82.12","1.22","4.43","0.1","0","2.87"
+"Beterraba, cozida","32.15","134.53","1.29","7.23","0.09","0","1.88"
+"Beterraba, crua","48.83","204.3","1.95","11.11","0.09","0","3.37"
+"Biscoito, polvilho doce","437.55","1830.71","1.29","80.54","12.25","9.39","1.16"
+"Brócolis, cozido","24.64","103.08","2.13","4.37","0.46","0","3.42"
+"Brócolis, cru","25.5","106.67","3.64","4.03","0.27","0","2.88"
+"Cará, cozido","77.58","324.62","1.53","18.85","0.11","0","2.63"
+"Cará, cru","95.63","400.13","2.28","22.95","0.14","0","7.27"
+"Caruru, cru","34.03","142.39","3.2","5.97","0.59","0","4.47"
+"Catalonha, crua","23.89","99.95","1.87","4.75","0.28","0","2.05"
+"Catalonha, refogada","63.45","265.47","1.95","4.81","4.81","0","3.65"
+"Cebola, crua","39.42","164.93","1.71","8.85","0.08","0","2.19"
+"Cebolinha, crua","19.52","81.65","1.87","3.37","0.35","0","3.55"
+"Cenoura, cozida","29.86","124.94","0.85","6.69","0.22","0","2.63"
+"Cenoura, crua","34.14","142.82","1.32","7.66","0.17","0","3.18"
+"Chicória, crua","13.84","57.89","1.14","2.85","0.14","0","2.2"
+"Chuchu, cozido","18.54","77.57","0.41","4.79","0","0","1.04"
+"Chuchu, cru","16.98","71.04","0.7","4.14","0.06","0","1.28"
+"Coentro, folhas desidratadas","309.07","1293.15","20.88","47.96","10.39","0","37.29"
+"Couve, manteiga, crua","27.06","113.21","2.87","4.33","0.55","0","3.12"
+"Couve, manteiga, refogada ","90.34","378","1.67","8.71","6.59","0","5.74"
+"Couve-flor, crua","22.56","94.41","1.91","4.52","0.21","0","2.35"
+"Couve-flor, cozida","19.11","79.97","1.24","3.88","0.27","0","2.13"
+"Espinafre, Nova Zelândia, cru","16.1","67.34","2","2.57","0.24","0","2.1"
+"Espinafre, Nova Zelândia, refogado","67.25","281.39","2.72","4.24","5.43","0","2.52"
+"Farinha, de mandioca, crua","360.87","1509.88","1.55","87.9","0.28","0","6.39"
+"Farinha, de mandioca, torrada","365.27","1528.29","1.23","89.19","0.29","0","6.54"
+"Farinha, de puba","360.18","1506.99","1.62","87.29","0.47","0","4.24"
+"Fécula, de mandioca","330.85","1384.28","0.52","81.15","0.28","0","0.65"
+"Feijão, broto, cru","38.72","162.02","4.17","7.76","0.1","0","1.97"
+"Inhame, cru","96.7","404.59","2.05","23.23","0.21","0","1.65"
+"Jiló, cru","27.37","114.5","1.4","6.19","0.22","0","4.83"
+"Jurubeba, crua","125.81","526.4","4.41","23.06","3.91","0","23.92"
+"Mandioca, cozida","125.36","524.5","0.58","30.09","0.3","0","1.56"
+"Mandioca, crua","151.42","633.53","1.13","36.17","0.3","0","1.88"
+"Mandioca, farofa, temperada","405.69","1697.42","2.06","80.3","9.12","0","7.82"
+"Mandioca, frita","300.06","1255.43","1.38","50.25","11.2","0","1.87"
+"Manjericão, cru","21.15","88.48","1.99","3.64","0.39","0","3.31"
+"Maxixe, cru","13.75","57.52","1.39","2.73","0.07","0","2.19"
+"Mostarda, folha, crua","18.11","75.76","2.11","3.24","0.17","0","1.89"
+"Nhoque, batata, cozido","180.78","756.36","5.86","36.78","1.94","15.08","1.78"
+"Nabo, cru","18.19","76.09","1.2","4.15","0.05","0","2.64"
+"Palmito, juçara, em conserva","23.2","97.07","1.79","4.33","0.4","0","3.15"
+"Palmito, pupunha, em conserva","29.43","123.14","2.46","5.51","0.45","0","2.55"
+"Pão, de queijo, assado","363.08","1519.12","5.12","34.24","24.57","67.73","0.56"
+"Pão, de queijo, cru","294.54","1232.35","3.65","38.51","13.99","63.05","0.98"
+"Pepino, cru","9.53","39.89","0.87","2.04","0","0","1.12"
+"Pimentão, amarelo, cru","27.93","116.85","1.22","5.96","0.44","0","1.92"
+"Pimentão, verde, cru","21.29","89.06","1.05","4.89","0.15","0","2.56"
+"Pimentão, vermelho, cru","23.28","97.41","1.04","5.47","0.15","0","1.59"
+"Polvilho, doce","351.23","1469.53","0.43","86.77","0","0","0.24"
+"Quiabo, cru","29.94","125.27","1.92","6.37","0.3","0","4.55"
+"Rabanete, cru","13.74","57.48","1.39","2.73","0.07","0","2.19"
+"Repolho, branco, cru","17.12","71.63","0.88","3.86","0.14","0","1.89"
+"Repolho, roxo, cru","30.91","129.32","1.91","7.2","0.06","0","1.97"
+"Repolho, roxo, refogado","41.77","174.78","1.8","7.56","1.24","0","1.75"
+"Rúcula, crua","13.13","54.95","1.77","2.22","0.11","0","1.74"
+"Salsa, crua","33.42","139.85","3.26","5.71","0.61","0","1.85"
+"Seleta de legumes, enlatada","56.53","236.54","3.42","12.67","0.35","0","3.09"
+"Serralha, crua","30.4","127.18","2.67","4.95","0.74","0","3.52"
+"Taioba, crua","34.21","143.13","2.9","5.43","0.93","0","4.45"
+"Tomate, com semente, cru","15.34","64.16","1.1","3.14","0.17","0","1.17"
+"Tomate, extrato","60.93","254.95","2.43","14.96","0.19","0","2.8"
+"Tomate, molho industrializado","38.45","160.86","1.38","7.71","0.9","0","3.12"
+"Tomate, purê","27.94","116.89","1.36","6.89","0","0","1.03"
+"Tomate, salada","20.55","85.97","0.81","5.12","0","0","2.27"
+"Vagem, crua","24.9","104.17","1.79","5.35","0.17","0","2.38"
+"Abacate, cru","96.15","402.31","1.24","6.03","8.4","0","6.31"
+"Abacaxi, cru","48.32","202.18","0.86","12.33","0.12","0","0.99"
+"Abacaxi, polpa, congelada","30.59","128","0.47","7.8","0.11","0","0.33"
+"Abiu, cru","62.42","261.18","0.83","14.93","0.7","0","1.7"
+"Açaí, polpa, com xarope de guaraná e glucose","110.3","461.49","0.72","21.46","3.66","0","1.72"
+"Açaí, polpa, congelada","58.05","242.86","0.8","6.21","3.94","0","2.55"
+"Acerola, crua","33.46","140.01","0.91","7.97","0.21","0","1.51"
+"Acerola, polpa, congelada","21.94","91.78","0.59","5.54","0","0","0.7"
+"Ameixa, calda, enlatada ","182.85","765.03","0.41","46.89","0","0","0.52"
+"Ameixa, crua","52.54","219.84","0.77","13.85","0","0","2.43"
+"Ameixa, em calda, enlatada, drenada ","177.36","742.07","1.03","47.66","0.28","0","4.55"
+"Atemóia, crua","96.97","405.73","0.97","25.33","0.3","0","2.14"
+"Banana, da terra, crua","128.02","535.65","1.43","33.67","0.24","0","1.53"
+"Banana, doce em barra","280.11","1171.96","2.17","75.67","0.05","0","3.83"
+"Banana, figo, crua","105.08","439.67","1.13","27.8","0.14","0","2.8"
+"Banana, maçã, crua","86.81","363.19","1.75","22.34","0.06","0","2.59"
+"Banana, nanica, crua","91.53","382.96","1.4","23.85","0.12","0","1.95"
+"Banana, ouro, crua","112.37","470.14","1.48","29.34","0.21","0","1.95"
+"Banana, pacova, crua","77.91","325.97","1.23","20.31","0.08","0","2.03"
+"Banana, prata, crua","98.25","411.08","1.27","25.96","0.07","0","2.04"
+"Cacau, cru","74.29","310.84","0.95","19.41","0.14","0","2.19"
+"Cajá-Manga, cru","45.58","190.71","1.28","11.43","0","0","2.58"
+"Cajá, polpa, congelada","26.33","110.17","0.59","6.37","0.17","0","1.36"
+"Caju, cru","43.07","180.18","0.97","10.29","0.33","0","1.68"
+"Caju, polpa, congelada","36.57","153","0.48","9.35","0.15","0","0.81"
+"Caju, suco concentrado, envasado","45.11","188.73","0.4","10.73","0.2","0","0.63"
+"Caqui, chocolate, cru","71.35","298.53","0.36","19.33","0.07","0","6.52"
+"Carambola, crua","45.74","191.38","0.87","11.48","0.18","0","2.03"
+"Ciriguela, crua","75.59","316.29","1.4","18.86","0.36","0","3.9"
+"Cupuaçu, cru","49.42","206.78","1.16","10.43","0.95","0","3.12"
+"Cupuaçu, polpa, congelada","48.8","204.17","0.84","11.39","0.59","0","1.59"
+"Figo, cru","41.45","173.41","0.97","10.25","0.16","0","1.79"
+"Figo, enlatado, em calda","184.36","771.37","0.56","50.34","0.15","0","1.98"
+"Fruta-pão, crua","67.05","280.52","1.08","17.17","0.19","0","5.55"
+"Goiaba, branca, com casca, crua","51.74","216.47","0.9","12.4","0.49","0","6.33"
+"Goiaba, doce em pasta","268.96","1125.33","0.58","74.12","0","0","3.73"
+"Goiaba, doce, cascão","285.59","1194.9","0.41","78.7","0.1","0","4.37"
+"Goiaba, vermelha, com casca, crua","54.17","226.65","1.09","13.01","0.44","0","6.22"
+"Graviola, crua","61.62","257.83","0.85","15.84","0.21","0","1.91"
+"Graviola, polpa, congelada","38.27","160.14","0.57","9.78","0.14","0","1.19"
+"Jabuticaba, crua","58.05","242.89","0.61","15.26","0.13","0","2.3"
+"Jaca, crua","87.92","367.86","1.4","22.5","0.27","0","2.39"
+"Jambo, cru","26.91","112.6","0.89","6.49","0.07","0","5.07"
+"Jamelão, cru","41.01","171.58","0.55","10.63","0.11","0","1.78"
+"Kiwi, cru","51.14","213.95","1.34","11.5","0.63","0","2.65"
+"Laranja, baía, crua","45.44","190.11","0.98","11.47","0.1","0","1.12"
+"Laranja, baía, suco","36.65","153.34","0.65","8.7","0","0","0"
+"Laranja, da terra, crua","51.47","215.36","1.08","12.86","0.19","0","3.98"
+"Laranja, da terra, suco","40.96","171.36","0.67","9.57","0.14","0","1.03"
+"Laranja, lima, crua","45.7","191.21","1.06","11.53","0.08","0","1.78"
+"Laranja, lima, suco","39.34","164.58","0.71","9.17","0.12","0","0.42"
+"Laranja, pêra, crua","36.77","153.86","1.04","8.95","0.13","0","0.77"
+"Laranja, pêra, suco","32.71","136.86","0.74","7.55","0.07","0","0"
+"Laranja, valência, crua","46.11","192.92","0.77","11.72","0.16","0","1.73"
+"Laranja, valência, suco","36.2","151.45","0.48","8.55","0.12","0","0.42"
+"Limão, cravo, suco","14.1","59.01","0.33","5.25","0","0","0"
+"Limão, galego, suco","22.23","92.99","0.57","7.32","0.07","0","0"
+"Limão, tahiti, cru","31.82","133.13","0.94","11.08","0.14","0","1.18"
+"Maçã, Argentina, com casca, crua","62.53","261.63","0.23","16.59","0.25","0","2.03"
+"Maçã, Fuji, com casca, crua","55.52","232.28","0.29","15.15","0","0","1.35"
+"Macaúba, crua","404.28","1691.52","2.08","13.95","40.66","0","13.44"
+"Mamão, doce em calda, drenado","195.63","818.51","0.19","54","0.07","0","1.31"
+"Mamão, Formosa, cru","45.34","189.71","0.82","11.55","0.12","0","1.81"
+"Mamão, Papaia, cru","40.16","168.02","0.46","10.44","0.12","0","1.04"
+"Mamão verde, doce em calda, drenado","209.38","876.03","0.32","57.64","0.1","0","1.23"
+"Manga, Haden, crua","63.5","265.69","0.41","16.66","0.26","0","1.58"
+"Manga, Palmer, crua","72.49","303.28","0.41","19.35","0.17","0","1.63"
+"Manga, polpa, congelada","48.31","202.11","0.38","12.52","0.23","0","1.07"
+"Manga, Tommy Atkins, crua","50.69","212.1","0.86","12.77","0.22","0","2.07"
+"Maracujá, cru","68.44","286.35","1.99","12.26","2.1","0","1.14"
+"Maracujá, polpa, congelada","38.76","162.17","0.81","9.6","0.18","0","0.51"
+"Maracujá, suco concentrado, envasado","41.97","175.59","0.77","9.64","0.19","0","0.35"
+"Melancia, crua","32.61","136.43","0.88","8.14","0","0","0.12"
+"Melão, cru","29.37","122.88","0.68","7.53","0","0","0.25"
+"Mexerica, Murcote, crua","57.59","240.97","0.88","14.86","0.13","0","3.07"
+"Mexerica, Rio, crua","36.87","154.27","0.65","9.34","0.13","0","2.73"
+"Morango, cru","30.15","126.14","0.89","6.82","0.31","0","1.72"
+"Nêspera, crua","42.54","177.98","0.31","11.53","0","0","2.96"
+"Pequi, cru","204.97","857.58","2.34","12.97","17.97","0","19.04"
+"Pêra, Park, crua","60.59","253.5","0.24","16.07","0.23","0","2.98"
+"Pêra, Williams, crua","53.31","223.05","0.57","14.02","0.11","0","3.01"
+"Pêssego, Aurora, cru","36.33","151.99","0.83","9.32","0","0","1.42"
+"Pêssego, enlatado, em calda","63.14","264.19","0.71","16.88","0","0","1.02"
+"Pinha, crua","88.47","370.17","1.49","22.45","0.32","0","3.36"
+"Pitanga, crua","41.42","173.28","0.93","10.24","0.17","0","3.24"
+"Pitanga, polpa, congelada","19.11","79.94","0.29","4.76","0.12","0","0.74"
+"Romã, crua","55.74","233.21","0.4","15.11","0","0","0.44"
+"Tamarindo, cru","275.7","1153.51","3.21","72.53","0.46","0","6.45"
+"Tangerina, Poncã, crua","37.83","158.22","0.85","9.61","0.07","0","0.94"
+"Tangerina, Poncã, suco","36.11","150.98","0.52","8.8","0","0","0"
+"Tucumã, cru","262.02","1096.27","2.09","26.47","19.08","0","12.65"
+"Umbu, cru","37.02","154.88","0.84","9.4","0","0","1.98"
+"Umbu, polpa, congelada","33.94","142.02","0.51","8.79","0.07","0","1.34"
+"Uva, Itália, crua","52.87","221.16","0.75","13.57","0.2","0","0.92"
+"Uva, Rubi, crua","49.06","205.27","0.61","12.7","0.16","0","0.93"
+"Uva, suco concentrado, envasado","57.66","241.23","0","14.71","0","0","0.23"
+"Azeite, de dendê","884","3698.66","0","0","100","0","0"
+"Azeite, de oliva, extra virgem","884","3698.66","0","0","100","0","0"
+"Manteiga, com sal","725.97","3037.45","0.41","0.06","82.36","200.55","0"
+"Manteiga, sem sal","757.54","3169.55","0.4","0","86.04","213.95","0"
+"Margarina, com óleo hidrogenado, com sal (65% de lipídeos)","596.12","2494.16","0","0","67.43","0","0"
+"Margarina, com óleo hidrogenado, sem sal (80% de lipídeos)","722.53","3023.05","0","0","81.73","0","0"
+"Margarina, com óleo interesterificado, com sal (65%de lipídeos)","594.45","2487.19","0","0","67.25","0","0"
+"Margarina, com óleo interesterificado, sem sal (65% de lipídeos)","593.14","2481.69","0","0","67.1","0","0"
+"Óleo, de babaçu","884","3698.66","0","0","100","0","0"
+"Óleo, de canola","884","3698.66","0","0","100","0","0"
+"Óleo, de girassol","884","3698.66","0","0","100","0","0"
+"Óleo, de milho","884","3698.66","0","0","100","0","0"
+"Óleo, de pequi","884","3698.66","0","0","100","0","0"
+"Óleo, de soja","884","3698.66","0","0","100","0","0"
+"Abadejo, filé, congelado, assado","111.62","467","23.53","0","1.24","102.8","0"
+"Abadejo, filé, congelado,cozido","91.1","381.18","19.35","0","0.94","86.86","0"
+"Abadejo, filé, congelado, cru","59.11","247.33","13.08","0","0.36","31.41","0"
+"Abadejo, filé, congelado, grelhado","129.64","542.43","27.61","0","1.3","135.85","0"
+"Atum, conserva em óleo","165.91","694.17","26.19","0","6","52.94","0"
+"Atum, fresco, cru","117.5","491.62","25.68","0","0.87","47.8","0"
+"Bacalhau, salgado, cru","135.89","568.58","29.04","0","1.32","138.88","0"
+"Bacalhau, salgado, refogado","139.66","584.34","23.98","1.22","3.61","111.97","0"
+"Cação, posta, com farinha de trigo, frita","208.33","871.66","24.95","3.1","9.95","74.91","0.54"
+"Cação, posta, cozida","116.01","485.4","25.59","0","0.75","83.25","0"
+"Cação, posta, crua","83.33","348.67","17.85","0","0.79","36.13","0"
+"Camarão, Rio Grande, grande, cozido","90.01","376.62","18.97","0","1","240.85","0"
+"Camarão, Rio Grande, grande, cru","47.18","197.42","9.99","0","0.5","123.99","0"
+"Camarão, Sete Barbas, sem cabeça, com casca, frito","231.25","967.53","18.39","2.88","15.62","283.14","0"
+"Caranguejo, cozido","82.72","346.11","18.48","0","0.42","84.61","0"
+"Corimba, cru","128.16","536.2","17.37","-0.03","5.99","40.23","0"
+"Corimbatá, assado","261.45","1093.92","19.9","0","19.57","80.09","0"
+"Corimbatá, cozido","238.7","998.7","20.13","0","16.93","74.62","0"
+"Corvina de água doce, crua","101.01","422.62","18.92","0","2.24","73.11","0"
+"Corvina do mar, crua","94","391.52","18.57","0","1.58","67.07","0"
+"Corvina grande, assada","146.53","613.07","26.77","0","3.57","117.05","0"
+"Corvina grande, cozida","100.08","418.73","23.44","0","2.56","122.56","0"
+"Dourada de água doce, fresca","131.21","548.98","18.81","0","5.64","51.99","0"
+"Lambari, congelado, cru","130.84","547.44","16.81","0","6.55","158.66","0"
+"Lambari, congelado, frito","326.87","1367.62","28.43","0","22.78","246.32","0"
+"Lambari, fresco, cru","151.6","634.29","15.65","0","9.4","144.25","0"
+"Manjuba, com farinha de trigo, frita","343.55","1437.42","23.45","10.24","22.59","281.76","0.36"
+"Manjuba, frita","349.33","1461.58","30.14","0","24.46","270.34","0"
+"Merluza, filé, assado","121.91","510.07","26.6","0","0.92","90.97","0"
+"Merluza, filé, cru","89.13","372.92","16.61","0","2.02","57.18","0"
+"Merluza, filé, frito","191.63","801.77","26.93","0","8.5","109.1","0"
+"Pescada, branca, crua","110.88","463.91","16.26","0","4.59","50.77","0"
+"Pescada, branca, frita","223.04","933.2","27.36","0","11.78","165.44","0"
+"Pescada, filé, com farinha de trigo, frito","283.43","1185.85","21.44","5.03","19.12","72.97","0"
+"Pescada, filé, cru","107.21","448.55","16.65","0","4","64.84","0"
+"Pescada, filé, frito","154.27","645.47","28.59","0","3.57","80.81","0"
+"Pescada, filé, molho escabeche","141.96","593.95","11.75","5.02","8.02","43.4","0.78"
+"Pescadinha, crua","76.41","319.69","15.48","0","1.14","83.61","0"
+"Pintado, assado","191.56","801.48","36.45","0","3.98","125.96","0"
+"Pintado, cru","91.08","381.09","18.56","0","1.31","50.3","0"
+"Pintado, grelhado","152.19","636.76","30.8","0","2.29","99.3","0"
+"Porquinho, cru","93.02","389.21","20.49","0","0.61","48.61","0"
+"Salmão, filé, com pele, fresco,  grelhado","228.73","957.01","23.92","0","14.04","85.31","0"
+"Salmão, sem pele, fresco, cru","169.78","710.37","19.25","0","9.71","53.03","0"
+"Salmão, sem pele, fresco, grelhado","242.71","1015.48","26.14","0","14.53","72.82","0"
+"Sardinha, assada","164.35","687.64","32.18","0","2.99","108.99","0"
+"Sardinha, conserva em óleo","284.98","1192.36","15.94","0","24.05","72.57","0"
+"Sardinha, frita","257.04","1075.46","33.38","0","12.69","102.87","0"
+"Sardinha, inteira, crua","113.9","476.56","21.08","0","2.65","60.5","0"
+"Tucunaré, filé, congelado, cru","87.69","366.88","17.96","-0.05","1.22","46.9","0"
+"Apresuntado","128.86","539.14","13.45","2.86","6.69","37.67","0"
+"Caldo de carne, tablete","240.62","1006.77","7.82","15.05","16.57","0","0.58"
+"Caldo de galinha, tablete","251.45","1052.05","6.28","10.65","20.42","2.11","11.81"
+"Carne, bovina, acém, moído, cozido","212.42","888.77","26.69","0","10.92","103.13","0"
+"Carne, bovina, acém, moído, cru","136.56","571.38","19.42","0","5.95","57.94","0"
+"Carne, bovina, acém, sem gordura, cozido","214.61","897.93","27.27","0","10.88","106.75","0"
+"Carne, bovina, acém, sem gordura, cru","144.03","602.62","20.82","0","6.11","53.37","0"
+"Carne, bovina, almôndegas, cruas","189.26","791.85","12.31","9.79","11.2","33.6","0"
+"Carne, bovina, almôndegas, fritas","271.81","1137.27","18.16","14.29","15.78","36.38","0"
+"Carne, bovina, bucho, cozido","133.02","556.57","21.64","0","4.5","245.47","0"
+"Carne, bovina, bucho, cru","137.3","574.48","20.53","0","5.5","144.9","0"
+"Carne, bovina, capa de contra-filé, com gordura, crua","216.91","907.55","19.2","0","14.96","62.81","0"
+"Carne, bovina, capa de contra-filé, com gordura, grelhada","311.7","1304.16","30.69","0","20.03","120.43","0"
+"Carne, bovina, capa de contra-filé, sem gordura, crua","131.06","548.37","21.54","0","4.33","58.35","0"
+"Carne, bovina, capa de contra-filé, sem gordura, grelhada","239.44","1001.83","35.06","-0.01","9.95","80.29","0"
+"Carne, bovina, charque, cozido","262.78","1099.47","36.36","0","11.92","113.43","0"
+"Carne, bovina, charque, cru","248.86","1041.23","22.71","0","16.84","80.69","0"
+"Carne, bovina, contra-filé, à milanesa","351.59","1471.06","20.61","12.17","24","99.36","0.37"
+"Carne, bovina, contra-filé de costela, cru","202.44","847","19.8","0","13.07","52.31","0"
+"Carne, bovina, contra-filé de costela, grelhado","274.91","1150.24","29.88","0","16.33","97.87","0"
+"Carne, bovina, contra-filé, com gordura, cru","205.86","861.3","21.15","0","12.81","72.65","0"
+"Carne, bovina, contra-filé, com gordura, grelhado","278.05","1163.38","32.4","0","15.49","143.86","0"
+"Carne, bovina, contra-filé, sem gordura, cru","156.62","655.28","24","0","6","59.46","0"
+"Carne, bovina, contra-filé, sem gordura, grelhado","193.69","810.41","35.88","0","4.49","101.9","0"
+"Carne, bovina, costela, assada","373.04","1560.79","28.81","0","27.72","94.59","0"
+"Carne, bovina, costela, crua","357.72","1496.71","16.71","0","31.75","44.19","0"
+"Carne, bovina, coxão duro, sem gordura, cozido","216.62","906.32","31.88","0","8.92","71.1","0"
+"Carne, bovina, coxão duro, sem gordura, cru","147.97","619.09","21.51","0","6.22","59.98","0"
+"Carne, bovina, coxão mole, sem gordura, cozido","218.68","914.94","32.38","0","8.91","84.15","0"
+"Carne, bovina, coxão mole, sem gordura, cru","169.07","707.37","21.23","0","8.69","83.82","0"
+"Carne, bovina, cupim, assado","330.1","1381.14","28.63","0","23.04","90.8","0"
+"Carne, bovina, cupim, cru","221.4","926.33","19.54","0","15.3","50.95","0"
+"Carne, bovina, fígado, cru","141.05","590.14","20.71","1.11","5.36","392.88","0"
+"Carne, bovina, fígado, grelhado","225.03","941.51","29.86","4.2","9.01","601.47","0"
+"Carne, bovina, filé mingnon, sem gordura, cru","142.86","597.74","21.6","0","5.61","54.76","0"
+"Carne, bovina, filé mingnon, sem gordura, grelhado","219.7","919.24","32.8","0","8.83","102.88","0"
+"Carne, bovina, flanco, sem gordura, cozido","195.58","818.29","29.38","0","7.77","62","0"
+"Carne, bovina, flanco, sem gordura, cru","141.46","591.87","20","0","6.22","50.3","0"
+"Carne, bovina, fraldinha, com gordura, cozida","338.45","1416.06","24.24","0","26.05","64.87","0"
+"Carne, bovina, fraldinha, com gordura, crua","220.72","923.51","17.58","0","16.15","54.34","0"
+"Carne, bovina, lagarto, cozido","222.47","930.81","32.86","0","9.11","55.7","0"
+"Carne, bovina, lagarto, cru","134.86","564.27","20.54","0","5.23","55.79","0"
+"Carne, bovina, língua, cozida","314.9","1317.55","21.37","0","24.8","105.07","0"
+"Carne, bovina, língua, crua","215.25","900.61","17.09","0","15.77","117.85","0"
+"Carne, bovina, maminha, crua","152.77","639.17","20.93","0","7.03","50.8","0"
+"Carne, bovina, maminha, grelhada","153.09","640.53","30.74","0","2.42","87.7","0"
+"Carne, bovina, miolo de alcatra, sem gordura, cru","162.87","681.45","21.61","0","7.83","60.37","0"
+"Carne, bovina, miolo de alcatra, sem gordura, grelhado","241.36","1009.87","31.93","0","11.64","92.2","0"
+"Carne, bovina, músculo, sem gordura, cozido","193.8","810.86","31.23","0","6.7","56.15","0"
+"Carne, bovina, músculo, sem gordura, cru","141.58","592.37","21.56","0","5.49","50.94","0"
+"Carne, bovina, paleta, com gordura, crua","158.71","664.04","21.41","0","7.46","58.26","0"
+"Carne, bovina, paleta, sem gordura, cozida","193.65","810.24","29.72","0","7.4","55.61","0"
+"Carne, bovina, paleta, sem gordura, crua","140.94","589.7","21.03","0","5.67","42.25","0"
+"Carne, bovina, patinho, sem gordura, cru","133.47","558.43","21.72","0","4.51","55.61","0"
+"Carne, bovina, patinho, sem gordura, grelhado","219.26","917.38","35.9","0","7.31","125.68","0"
+"Carne, bovina, peito, sem gordura, cozido","338.47","1416.17","22.25","0","26.99","99.54","0"
+"Carne, bovina, peito, sem gordura, cru","259.28","1084.81","17.56","0","20.43","59.3","0"
+"Carne, bovina, picanha, com gordura, crua","212.88","890.69","18.82","0","14.69","59.55","0"
+"Carne, bovina, picanha, com gordura, grelhada","288.77","1208.2","26.42","0","19.51","91.76","0"
+"Carne, bovina, picanha, sem gordura, crua","133.52","558.66","21.25","0","4.74","75.23","0"
+"Carne, bovina, picanha, sem gordura, grelhada","238.47","997.75","31.91","0","11.33","99.71","0"
+"Carne, bovina, seca, cozida","312.8","1308.75","26.93","0","21.93","100.14","0"
+"Carne, bovina, seca, crua","312.75","1308.54","19.66","0","25.37","91.55","0"
+"Coxinha de frango, frita","283.05","1184.27","9.61","34.52","11.84","14.81","4.97"
+"Croquete, de carne, cru","245.77","1028.31","12.04","13.95","15.56","29.85","0"
+"Croquete, de carne, frito","346.74","1450.77","16.86","18.15","22.67","38.1","0"
+"Empada de frango, pré-cozida, assada","358.19","1498.67","6.94","47.49","15.61","22.72","2.16"
+"Empada, de frango, pré-cozida","377.48","1579.37","7.34","35.53","22.89","23.28","2.22"
+"Frango, asa, com pele, crua","213.19","891.98","18.1","0","15.07","113.45","0"
+"Frango, caipira, inteiro, com pele, cozido","242.89","1016.25","23.88","0","15.62","109.55","0"
+"Frango, caipira, inteiro, sem pele, cozido","195.76","819.06","29.58","0","7.7","105.52","0"
+"Frango, coração, cru","221.5","926.77","12.58","0","18.6","159.24","0"
+"Frango, coração, grelhado","207.27","867.23","22.44","0.61","12.1","280.36","0"
+"Frango, coxa, com pele, assada","215.12","900.06","28.49","0.06","10.36","145.48","0"
+"Frango, coxa, com pele, crua","161.47","675.61","17.09","0","9.81","97.4","0"
+"Frango, coxa, sem pele, cozida","167.43","700.52","26.86","0","5.85","132.92","0"
+"Frango, coxa, sem pele, crua","119.95","501.86","17.81","0.02","4.86","90.56","0"
+"Frango, fígado, cru","106.48","445.53","17.59","-0.02","3.49","340.58","0"
+"Frango, filé, à milanesa","220.87","924.13","28.46","7.51","7.79","84.32","1.13"
+"Frango, inteiro, com pele, cru","226.32","946.92","16.44","0","17.31","84.84","0"
+"Frango, inteiro, sem pele, assado","187.34","783.82","28.03","0","7.5","110.94","0"
+"Frango, inteiro, sem pele, cozido","170.39","712.91","24.99","0","7.06","98.93","0"
+"Frango, inteiro, sem pele, cru","129.1","540.14","20.59","0","4.57","78.24","0"
+"Frango, peito, com pele, assado","211.68","885.68","33.42","0","7.65","109.03","0"
+"Frango, peito, com pele, cru","149.47","625.36","20.78","0","6.73","79.93","0"
+"Frango, peito, sem pele, cozido","162.87","681.47","31.47","0","3.16","88.51","0"
+"Frango, peito, sem pele, cru","119.16","498.56","21.53","0","3.02","58.68","0"
+"Frango, peito, sem pele, grelhado","159.19","666.03","32.03","0","2.48","89.12","0"
+"Frango, sobrecoxa, com pele, assada","259.6","1086.19","28.7","0","15.19","158.26","0"
+"Frango, sobrecoxa, com pele, crua","254.53","1064.96","15.46","0","20.9","87.63","0"
+"Frango, sobrecoxa, sem pele, assada","232.88","974.38","29.18","0","12.01","145.11","0"
+"Frango, sobrecoxa, sem pele, crua","161.8","676.96","17.57","0","9.62","84.09","0"
+"Hambúrguer, bovino, cru","214.84","898.87","13.16","4.15","16.18","70.01","0"
+"Hambúrguer, bovino, frito","258.28","1080.66","19.97","6.32","17.01","48.9","0"
+"Hambúrguer, bovino, grelhado","209.83","877.94","13.16","11.33","12.43","58.53","0"
+"Lingüiça, frango, crua","218.11","912.57","14.24","0","17.44","64.13","0"
+"Lingüiça, frango, frita","245.46","1027.01","18.32","0","18.54","75.79","0"
+"Lingüiça, frango, grelhada","243.66","1019.47","18.19","0","18.4","80.48","0"
+"Lingüiça, porco, crua","227.2","950.62","16.06","0","17.58","52.93","0"
+"Lingüiça, porco, frita","279.54","1169.61","20.45","0","21.31","74.71","0"
+"Lingüiça, porco, grelhada","296.49","1240.51","23.17","0","21.9","81.7","0"
+"Mortadela","268.82","1124.74","11.95","5.82","21.65","82.76","0"
+"Peru, congelado, assado","163.07","682.29","26.2","0","5.68","91.24","0"
+"Peru, congelado, cru","93.72","392.13","18.08","0","1.83","68.16","0"
+"Porco, bisteca, crua","164.12","686.66","21.5","0","8.02","56.38","0"
+"Porco, bisteca, frita","311.17","1301.93","33.75","0","18.52","126.3","0"
+"Porco, bisteca, grelhada","280.08","1171.87","28.89","0","17.38","81.68","0"
+"Porco, costela, assada","402.17","1682.67","30.22","0","30.28","112.86","0"
+"Porco, costela, crua","255.61","1069.46","18","0","19.82","68.83","0"
+"Porco, lombo, assado","210.23","879.62","35.73","0","6.4","103.08","0"
+"Porco, lombo, cru","175.63","734.82","22.6","0","8.77","55.39","0"
+"Porco, orelha, salgada, crua","258.49","1081.53","18.52","0","19.89","83.01","0"
+"Porco, pernil, assado","262.26","1097.29","32.13","0","13.86","109.8","0"
+"Porco, pernil, cru","186.06","778.46","20.13","0","11.1","58.69","0"
+"Porco, rabo, salgado, cru","377.42","1579.11","15.58","0","34.47","89.09","0"
+"Presunto, com capa de gordura","127.85","534.92","14.37","1.4","6.77","39.51","0"
+"Presunto, sem capa de gordura","93.74","392.22","14.29","2.15","2.71","35.77","0"
+"Quibe, assado","136.23","569.98","14.59","12.86","2.68","33.73","1.9"
+"Quibe, cru","109.49","458.11","12.35","10.77","1.67","26.93","1.65"
+"Quibe, frito","253.83","1062.03","14.89","12.34","15.8","37.77","0"
+"Salame","397.84","1664.57","25.81","2.91","30.64","85.09","0"
+"Toucinho, cru","592.53","2479.15","11.48","0","60.26","73.08","0"
+"Toucinho, frito","696.56","2914.42","27.28","0","64.31","89.46","0"
+"Bebida láctea, pêssego","55.16","230.81","2.13","7.57","1.91","5.37","0.29"
+"Creme de Leite","221.48","926.69","1.51","4.51","22.48","66.48","0"
+"Iogurte, natural","51.49","215.43","4.06","1.92","3.04","13.78","0"
+"Iogurte, natural, desnatado","41.49","173.61","3.83","5.77","0.32","3.33","0"
+"Iogurte, sabor abacaxi","0","0","0","0","0","5.63","0"
+"Iogurte, sabor morango","69.57","291.06","2.71","9.69","2.33","7.49","0.22"
+"Iogurte, sabor pêssego","67.85","283.88","2.53","9.43","2.34","8.4","0.72"
+"Leite, condensado","312.57","1307.8","7.67","57","6.74","27.64","0"
+"Leite, de cabra","66.42","277.88","3.07","5.25","3.75","13.99","0"
+"Leite, de vaca, achocolatado","82.82","346.52","2.1","14.16","2.17","6.08","0.65"
+"Leite, de vaca, desnatado, pó","361.61","1512.97","34.69","53.04","0.93","24.79","0"
+"Leite, de vaca, desnatado, UHT","0","0","0","0","0","3.75","0"
+"Leite, de vaca, integral","0","0","0","0","0","10.49","0"
+"Leite, de vaca, integral, pó","496.65","2077.98","25.42","39.18","26.9","85.26","0"
+"Leite, fermentado","69.62","291.3","1.89","15.67","0.1","1.85","0"
+"Queijo, minas, frescal","264.27","1105.72","17.41","3.24","20.18","62","0"
+"Queijo, minas, meia cura","320.72","1341.9","21.21","3.57","24.61","76.3","0"
+"Queijo, mozarela","329.87","1380.18","22.65","3.05","25.18","79.58","0"
+"Queijo, parmesão","452.96","1895.2","35.55","1.66","33.53","105.84","0"
+"Queijo, pasteurizado","303.08","1268.09","9.36","5.68","27.44","82.16","0"
+"Queijo, petit suisse, morango","121.11","506.71","5.79","18.46","2.84","12.07","0"
+"Queijo, prato","359.88","1505.74","22.66","1.88","29.11","90.9","0"
+"Queijo, requeijão, cremoso","256.58","1073.52","9.63","2.43","23.44","73.67","0"
+"Queijo, ricota","139.73","584.64","12.6","3.79","8.11","48.7","0"
+"Bebida isotônica, sabores variados","25.61","107.17","0","6.4","0","0","0"
+"Café, infusão 10%","9.07","37.95","0.71","1.48","0.07","0","0"
+"Cana, aguardente 1","215.66","902.33","0","0","0","0","0"
+"Cana, caldo de","65.34","273.4","0","18.15","0","0","0.14"
+"Cerveja, pilsen 2","40.72","170.37","0.56","3.32","0","0","0"
+"Chá, erva-doce, infusão 5%","1.4","5.85","0","0.39","0","0","0"
+"Chá, mate, infusão 5%","2.73","11.43","0","0.64","0.05","0","0"
+"Chá, preto, infusão 5%","2.25","9.41","0","0.63","0","0","0"
+"Coco, água de","21.51","89.99","0","5.28","0","0","0.13"
+"Refrigerante, tipo água tônica","30.78","128.78","0","7.95","0","0","0"
+"Refrigerante, tipo cola","33.51","140.22","0","8.66","0","0","0"
+"Refrigerante, tipo guaraná","38.7","161.92","0","10","0","0","0"
+"Refrigerante, tipo laranja","45.63","190.9","0","11.79","0","0","0"
+"Refrigerante, tipo limão","39.72","166.18","0","10.26","0","0","0"
+"Omelete, de queijo","268.01","1121.34","15.57","0.44","22.01","383.83","0"
+"Ovo, de codorna, inteiro, cru","176.89","740.12","13.69","0.77","12.68","568","0"
+"Ovo, de galinha, clara, cozida/10minutos","59.44","248.68","13.45","0","0.09","0","0"
+"Ovo, de galinha, gema, cozida/10minutos","352.67","1475.59","15.9","1.56","30.78","1272.37","0"
+"Ovo, de galinha, inteiro, cozido/10minutos","145.7","609.61","13.29","0.61","9.48","396.57","0"
+"Ovo, de galinha, inteiro, cru","143.11","598.78","13.03","1.64","8.9","355.94","0"
+"Ovo, de galinha, inteiro, frito","240.19","1004.94","15.62","1.19","18.59","516.26","0"
+"Achocolatado, pó","401.02","1677.87","4.2","91.18","2.17","0","3.89"
+"Açúcar, cristal","386.85","1619.21","0.32","99.61","0","0","0"
+"Açúcar, mascavo","368.55","1542.03","0.76","94.45","0.09","0","0"
+"Açúcar, refinado","386.57","1617.43","0.32","99.54","0","0","0"
+"Chocolate, ao leite","539.59","2257.63","7.22","59.58","30.27","16.52","2.17"
+"Chocolate, ao leite, com castanha do Pará","558.88","2338.34","7.41","55.38","34.19","15.5","2.46"
+"Chocolate, ao leite, dietético","556.82","2329.75","6.9","56.32","33.77","12.96","2.85"
+"Chocolate, meio amargo","474.92","1987.06","4.86","62.42","29.86","2.22","4.94"
+"Cocada branca","448.85","1877.97","1.12","81.38","13.59","0","3.57"
+"Doce, de abóbora, cremoso","198.94","832.35","0.92","54.61","0.21","0","2.28"
+"Doce, de leite, cremoso","306.31","1281.6","5.48","59.49","5.99","20.06","0"
+"Geléia, mocotó, natural","106.09","443.87","2.13","24.23","0.07","0","0"
+"Glicose de milho","292.12","1222.22","0","79.38","0","0","0"
+"Maria mole","301.24","1260.37","3.81","73.55","0.19","0","0.67"
+"Maria mole, coco queimado","306.63","1282.95","3.93","75.06","0.09","0","0.64"
+"Marmelada","257.24","1076.3","0.4","70.76","0.14","0","4.07"
+"Mel, de abelha","309.24","1293.87","0","84.03","0","0","0"
+"Melado","296.51","1240.58","0","76.62","0","0","0"
+"Quindim","411.35","1721.08","4.74","46.3","24.43","271.02","3.22"
+"Rapadura","351.96","1472.59","0.99","90.79","0.07","0","0"
+"Café, pó, torrado","418.62","1751.5","14.7","65.75","11.95","0","51.23"
+"Capuccino, pó","417.41","1746.43","11.31","73.61","8.63","28.9","2.44"
+"Fermento em pó, químico","89.72","375.4","0.48","43.91","0.07","0","0"
+"Fermento, biológico, levedura, tablete","89.79","375.7","16.96","7.7","1.52","0","4.17"
+"Gelatina, sabores variados, pó","380.22","1590.85","8.89","89.22","0","0","0"
+"Sal, dietético","0","0","0","0","0","0","0"
+"Sal, grosso","0","0","0","0","0","0","0"
+"Shoyu","60.93","254.92","3.31","11.65","0.33","0","0"
+"Tempero a base de sal","21.33","89.24","2.67","2.07","0.26","0","0.56"
+"Azeitona, preta, conserva","194.15","812.34","1.16","5.54","20.35","0","4.56"
+"Azeitona, verde, conserva","136.94","572.94","0.95","4.1","14.22","0","3.85"
+"Chantilly, spray, com gordura vegetal","314.96","1317.78","0.53","16.86","27.27","0","0"
+"Leite, de coco","166.16","695.21","1.01","2.19","18.36","0","0.68"
+"Maionese, tradicional com ovos","302.15","1264.21","0.58","7.9","30.5","42.47","0"
+"Acarajé","289.21","1210.06","8.35","19.11","19.93","25.46","9.36"
+"Arroz carreteiro","153.77","643.38","10.83","11.58","7.12","36.09","1.5"
+"Baião de dois, arroz e feijão-de-corda","135.68","567.69","6.24","20.42","3.23","4.1","5.07"
+"Barreado","164.98","690.26","18.27","0.24","9.53","60.11","0.15"
+"Bife à cavalo, com contra filé","291.23","1218.5","23.66","0","21.15","256.63","0"
+"Bolinho de arroz","273.51","1144.38","8.04","41.68","8.29","70.3","2.74"
+"Camarão à baiana","100.78","421.68","7.94","3.17","5.97","116.78","0.39"
+"Charuto, de repolho","78.23","327.33","6.78","10.13","1.12","21.34","1.46"
+"Cuscuz, de milho, cozido com sal","113.46","474.71","2.16","25.28","0.68","0","2.05"
+"Cuscuz, paulista","142.12","594.64","2.56","22.51","4.65","15.05","2.43"
+"Cuxá, molho","80.09","335.1","5.64","5.74","3.59","58.39","3.02"
+"Dobradinha","124.5","520.91","19.77","0","4.44","144.02","0"
+"Estrogonofe de carne","173.14","724.42","15.03","2.98","10.8","66.22","0"
+"Estrogonofe de frango","156.81","656.08","17.55","2.59","7.96","79.96","0"
+"Feijão tropeiro mineiro","151.56","634.13","10.17","19.58","6.79","67.88","3.57"
+"Feijoada","116.93","489.25","8.67","11.64","6.48","21.96","5.09"
+"Frango, com açafrão","112.78","471.89","9.7","4.06","6.17","50.42","0.22"
+"Macarrão, molho bolognesa","119.53","500.12","4.93","22.52","0.89","6.93","0.78"
+"Maniçoba","134.22","561.59","9.96","3.42","8.7","42.77","2.16"
+"Quibebe","86.35","361.29","8.56","6.64","2.67","0","1.67"
+"Salada, de legumes, com maionese","96.1","402.1","1.05","8.92","7.04","7.2","2.22"
+"Salada, de legumes, cozida no vapor","35.41","148.15","2.01","7.09","0.31","0","2.51"
+"Salpicão, de frango","147.86","618.67","13.93","4.57","7.84","52.52","0.41"
+"Sarapatel","122.98","514.56","18.47","1.09","4.42","315.36","0"
+"Tabule","57.45","240.39","2.05","10.58","1.21","0","2.08"
+"Tacacá","46.89","196.18","6.96","3.39","0.36","70.56","0.21"
+"Tapioca, com manteiga","347.83","1455.31","0.09","63.59","10.91","31.19","0"
+"Tucupi, com pimenta-de-cheiro","27.18","113.74","2.06","4.74","0.28","0","0.23"
+"Vaca atolada","144.9","606.25","5.12","10.06","9.32","18.59","2.34"
+"Vatapá","254.89","1066.47","6","9.75","23.23","44.45","1.7"
+"Virado à paulista","306.95","1284.27","10.18","14.11","25.59","65.84","2.16"
+"Yakisoba","112.8","471.96","7.52","18.25","2.61","0","1.06"
+"Amendoim, grão, cru","544.05","2276.32","27.19","20.31","43.85","0","8.04"
+"Amendoim, torrado, salgado","605.78","2534.59","22.48","18.7","53.96","0","7.76"
+"Ervilha, em vagem","88.09","366.97","7.45","14.23","0.47","0","9.72"
+"Ervilha, enlatada, drenada","73.84","308.97","4.6","13.44","0.38","0","5.08"
+"Feijão, carioca, cozido","76.42","319.76","4.78","13.59","0.54","0","8.51"
+"Feijão, carioca, cru","329.03","1376.65","19.98","61.22","1.26","0","18.42"
+"Feijão, fradinho, cozido","78.01","326.39","5.09","13.5","0.64","0","7.47"
+"Feijão, fradinho, cru","339.16","1419.07","20.21","61.24","2.37","0","23.59"
+"Feijão, jalo, cozido","92.74","388.02","6.14","16.5","0.51","0","13.87"
+"Feijão, jalo, cru","327.91","1371.96","20.1","61.48","0.95","0","30.32"
+"Feijão, preto, cozido","77.03","322.28","4.48","14.01","0.54","0","8.4"
+"Feijão, preto, cru","323.57","1353.8","21.34","58.75","1.24","0","21.83"
+"Feijão, rajado, cozido","84.7","354.39","5.54","15.27","0.4","0","9.32"
+"Feijão, rajado, cru","325.84","1363.33","17.27","62.93","1.17","0","24.01"
+"Feijão, rosinha, cozido","67.87","283.95","4.54","11.82","0.48","0","4.76"
+"Feijão, rosinha, cru","336.96","1409.85","20.92","62.22","1.33","0","20.63"
+"Feijão, roxo, cozido","76.89","321.72","5.72","12.91","0.54","0","11.51"
+"Feijão, roxo, cru","331.41","1386.64","22.17","59.99","1.24","0","33.84"
+"Grão-de-bico, cru","354.7","1484.08","21.23","57.88","5.43","0","12.36"
+"Guandu, cru","344.13","1439.86","18.96","64","2.13","0","21.31"
+"Lentilha, cozida","92.64","387.6","6.31","16.3","0.52","0","7.86"
+"Lentilha, crua","339.14","1418.97","23.15","62","0.77","0","16.94"
+"Paçoca, amendoim","486.93","2037.3","16","52.38","26.08","0","7.32"
+"Pé-de-moleque, amendoim","503.19","2105.35","13.16","54.73","28.05","0","3.39"
+"Soja, farinha","403.96","1690.15","36.03","38.44","14.63","0","20.18"
+"Soja, extrato solúvel, natural, fluido","39.1","163.61","2.38","4.28","1.61","0","0.37"
+"Soja, extrato solúvel, pó","458.9","1920.02","35.69","28.48","26.18","0","7.31"
+"Soja, queijo (tofu)","64.49","269.81","6.55","2.13","3.95","0","0.75"
+"Tremoço, cru","381.28","1595.27","33.58","43.79","10.34","0","32.31"
+"Tremoço, em conserva","120.64","504.77","11.11","12.39","3.78","0","14.44"
+"Amêndoa, torrada, salgada","580.75","2429.85","18.55","29.55","47.32","0","11.64"
+"Castanha-de-caju, torrada, salgada","570.17","2385.58","18.51","29.13","46.28","0","3.66"
+"Castanha-do-Brasil, crua","642.96","2690.16","14.54","15.08","63.46","0","7.93"
+"Coco, cru","406.49","1700.74","3.69","10.4","41.98","0","5.38"
+"Coco,  verde, cru","0","0","0","0","0","0","0"
+"Farinha, de mesocarpo de babaçu, crua","328.77","1375.58","1.41","79.17","0.2","0","17.86"
+"Gergelim, semente","583.55","2441.56","21.16","21.62","50.43","0","11.87"
+"Linhaça, semente","495.1","2071.53","14.08","43.31","32.25","0","33.5"
+"Pinhão, cozido","174.37","729.56","2.98","43.92","0.75","0","15.6"
+"Pupunha, cozida","218.53","914.35","2.52","29.57","12.76","0","4.25"
+"Noz, crua","620.06","2594.33","13.97","18.36","59.36","0","7.25"</textarea>
+
+        <div id="resultado">
+        
+        </div>
+    </div>
+    <!-- -------------------------------------------------------/page--------------------------------------------------------------- -->
+    
+</body>
+</html>
